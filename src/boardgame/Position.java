@@ -5,7 +5,11 @@ public class Position {
     private int row;
     private int column;
 
+    public Position(){
+    }
+
     public Position(int row, int column) {
+        //operação denominada (Contrutor)
         this.row = row;
         this.column = column;
     }
@@ -27,6 +31,8 @@ public class Position {
     }
 
     @Override
+    //o @Override Está sobreescrevendo o metodo toString
+    //O metodo toString é do tipo (object), que é uma superclasse de todas as classes
     public String toString() {
         return row + ", " + column;
     }
