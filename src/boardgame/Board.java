@@ -28,4 +28,19 @@ public class Board {
     public void setColumns(int columns) {
         this.columns = columns;
     }
+
+    //Aqui o nome do metodo é piece do tipo PieceBG
+    //ele recebe o int row e int column
+    //ele retorna a matriz (pieces) na row e column informadas pelo metodo
+    public PieceBG piece(int row, int column){
+        return pieces[row][column];
+    }
+
+    //aqui temos uma sobrecarga do metodo acima
+    //porém nessa operação ele esta recebendo uma posição do tipo(Position)
+    public PieceBG piece(Position position){
+        return pieces[position.getRow()][position.getColumn()];
+    }
+
+
 }
