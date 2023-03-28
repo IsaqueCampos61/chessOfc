@@ -6,13 +6,13 @@ public class UI {
 
     //esse faz referencia a matriz pieces da class Board
     public static void printBoard(ChessPiece[][] piecess){
-        /* o length representa a leitura total do argumento em questão no caso a matriz (pieces)
+        /* o length representa a leitura total do argumento em questão no caso a matriz (piecess)
         para imprimir em ordem decrescente ultilizamos (8-i)
          */
         for (int i=0; i < piecess.length; i++){
             System.out.print((8 - i)+ " ");
             for (int j = 0; j < piecess.length; j++){
-                //esse metodo imprime a peça na posição [#][#] da matriz pieces
+                //esse metodo imprime a peça na posição [#][#] da matriz piecess
                 printPiece (piecess[i][j]);
             }
             System.out.println();
@@ -27,6 +27,7 @@ public class UI {
         //esse metodo imprime uma peça
         if (piece == null){
             System.out.print("-");
+
         } else {
             //caso seja diferente de nulo ele imprime a peça (piece)
             System.out.print(piece);
