@@ -7,7 +7,6 @@ public class Board {
     private PieceBG[][] pieces;
 
     public Board(int rows, int columns) {
-        // PrDEF
         if (rows < 1 || columns < 1 ){
             throw new BoardException("Error creating board: there must be at least 1 row and 1 column");
         }
@@ -28,7 +27,7 @@ public class Board {
     //Aqui o nome do metodo é piece do tipo PieceBG
     //ele recebe o int row e int column
     //ele retorna a matriz (pieces) na row e column informadas pelo metodo
-    public PieceBG piece(int row, int column){
+    public PieceBG piece(int row, int column ){
         //essa exclamação da a ideia contraria, (ou seja se a posição não existe)
         if (!positionExists(row, column)){
             throw new BoardException("Position not on the board");
@@ -54,6 +53,35 @@ public class Board {
         pieces[position.getRow()][position.getColumn()] = piece;
         //aqui informamos que piece não é mais nulo
         piece.position = position;
+    }
+
+    //Operação para remover uma peça recebendo um POsition como argumento
+    /*o primeiro if è a programção defenciva da operação,
+     ele testa se a posição passada como argumento existe ou não,
+     caso não exista cai na exceção
+     */
+    /*o segundo if, testa para saber se tem alguma peça na posicção
+    caso nâo tenha ele rtorna null
+    */
+    //cso a operação passe os dois if, ai sim ela retira uma peça do tabuleiro
+    public PieceBG removePiece (Position position){
+        if (!positionExists(position)){
+            throw new BoardException("Position not on the board");
+        }
+        if (piece (position) == null ){
+            return null;
+        }
+        /* Essa nova variavel aux do tipo PieceBG
+        vai receber a piece que esta no tabuleiro na postion informada */
+        PieceBG aux = piece (position);
+        // agora estamos informando que a posição de aux vai ser null
+        // assim a peça foi retirada do tabuleiro
+        aux.position = null;
+        /* na matrix pieces nessa position passada como argumento
+        (aonde esta sendo removida a peça) agora passa a ser null */
+        //Logo não tem mais peça nessa posição da matrix
+        pieces[position.getRow()][position.getColumn()] = null;
+        return aux;
     }
 
     //esse atua como um metodo auxiliar ao metodo de baixo

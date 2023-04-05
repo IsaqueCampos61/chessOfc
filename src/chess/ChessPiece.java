@@ -9,7 +9,7 @@ public class ChessPiece extends PieceBG {
     private Color color;
 
     public ChessPiece(Board board, Color color) {
-        // Nesse super ele repassa a chamada para o contrutor da SuperClasse
+        // Nesse super, ele repassa a chamada para o contrutor da SuperClasse
         // Que é o contrutor da classe PieceBG
         super(board);
         this.color = color;

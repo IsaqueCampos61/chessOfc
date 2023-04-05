@@ -21,7 +21,7 @@ public class ChessPosition {
     public int getRow() {
         return row;
     }
-    /* Esse metodo converte O ChessPosition para umas position normal
+    /* Esse metodo converte o ChessPosition para uma position normal
     ele ultiliza uma formula geral
     subtraindo a linha da matrix = 8 - chessRow a linha do xadrez
     de forma parecida faremos o mesmo com os caracteres
@@ -35,12 +35,13 @@ public class ChessPosition {
         return new Position(8 - row, column - 'a');
     }
 
+    //Esse metodo é o oposto do metodo acima, ele recebe um dado da matriz e converte para uma posição de xadrez
     protected static ChessPosition fromPosition(Position position){
         return new ChessPosition ((char)( 'a' - position.getColumn()), 8 - position.getRow());
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "" + column + row;
     }
 }

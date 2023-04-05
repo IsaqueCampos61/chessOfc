@@ -1,7 +1,11 @@
 package application;
 
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
 
@@ -24,6 +28,21 @@ public class UI {
     public  static  final  String  ANSI_CYAN_BACKGROUND = "\u001B[46m" ;
     public  static  final  String  ANSI_WHITE_BACKGROUND = "\u001B[47m" ;
 
+    //aqui esse metodo recebe o scanner do programa principal
+    //recebendo ele como argumento
+    public static ChessPosition readChessPosition(Scanner sc){
+        try {
+            String s = sc.nextLine();
+            char column = s.charAt(0);
+            // aqui ele recorta o string a partir da posição 1. assim: (s.substring(1));
+            // e converte o resultado para inteiro, assim : Integer.parseInt
+            int row = Integer.parseInt(s.substring(1));
+            return new ChessPosition(column, row);
+            }
+            catch (RuntimeException e){
+                throw new InputMismatchException("Error instantiating ChessPosition. Valid values are from a1 to h8.");
+            }
+    }
     //esse faz referencia a matriz pieces da class Board
     public static void printBoard(ChessPiece[][] piecess){
         /* o length representa a leitura total do argumento em questão no caso a matriz (piecess)

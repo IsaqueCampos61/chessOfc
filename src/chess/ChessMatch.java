@@ -3,6 +3,7 @@ package chess;
 import PiecesChess.King;
 import PiecesChess.Rook;
 import boardgame.Board;
+import boardgame.PieceBG;
 import boardgame.Position;
 
 public class ChessMatch {
@@ -29,6 +30,46 @@ public class ChessMatch {
         }
         return mat;
     }
+
+    //Essa é a operação de mover peça
+    // contendo posição de origem (source) e posição de destino (target)
+    //
+    public ChessPiece performChesMove(ChessPosition sourcePosition, ChessPosition targetPosition){
+        //POsição de origem
+        //Aquie ele está sendo convertido para uma posição na matriz
+        Position sourse = sourcePosition.ToPosition();
+        //Posição de destino
+        //Aquie ele está sendo convertido para uma posição na matriz
+        Position target = targetPosition.ToPosition();
+        //Aqui esse motodo verifica se na posição de origem havia uma peça
+        //caso não seja valido vai cair na exceção
+        validateSoursePosition (sourse);
+        //Aqui essa operação recebe o resultado a operação makeMove
+        // passando como argumaneto as posições de origem e destino ja como matriz
+        PieceBG capturedPiece = makeMove(sourse, target);
+        return (ChessPiece) capturedPiece;
+    }
+
+    //Essa operação realiza um movimento
+    private PieceBG makeMove(Position sourse, Position target){
+        //Aqui ele retira a peça que está na posição de origem
+        PieceBG p = board.removePiece(sourse);
+        //aqui ele remove a possivel peça que esteja naposição de destino
+        // capturando
+        PieceBG capturedPiece= board.removePiece(target);
+        //Agora a peça que essa pessa de origem vai para a posição de destino
+        board.placePiece(p, target);
+        return capturedPiece;
+    }
+
+    private void validateSoursePosition (Position position){
+        //caso não exita uma peca na posição informada
+        // cai na exceção
+        if (!board.thereIsAPiece(position)){
+            throw new ChessException("Position not on the board");
+        }
+    }
+
     //Aqui temos uma operção de colocar peças passando as cordenadas do xadrez
     private void placeNewPiece (char column, int row, ChessPiece piece){
         board.placePiece(piece, new ChessPosition(column, row).ToPosition());
