@@ -68,6 +68,10 @@ public class ChessMatch {
         if (!board.thereIsAPiece(position)){
             throw new ChessException("Position not on the board");
         }
+
+        if (!board.piece(position).isThereAnyPossibleMove()){
+            throw new ChessException("There is no possible moves for the chosen piece");
+        }
     }
 
     //Aqui temos uma operção de colocar peças passando as cordenadas do xadrez

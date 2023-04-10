@@ -4,7 +4,7 @@ import boardgame.Board;
 import boardgame.PieceBG;
 
 //Essa é umas das subClasses de PieceBG
-public class ChessPiece extends PieceBG {
+public abstract class ChessPiece extends PieceBG {
 
     private Color color;
 
